@@ -1,0 +1,103 @@
+# ==============================================================================
+#  ROS 工作空間模組配置
+#  ros1_ws 獨立的模組優先級和依賴定義
+# ==============================================================================
+
+modules:
+  # === TIER 1: 基礎鏡像 ===
+  base:
+    path: base
+    priority: 1
+    description: "ROS 1 Base Image (L4T)"
+    dockerfiles:
+      - Dockerfile
+      - Dockerfile.l4t
+    critical: true
+    depends_on: []
+
+  # === TIER 2: ROS 工作空間服務 ===
+  control:
+    path: control
+    priority: 2
+    description: "ROS 1 Control (SLAM & Localization)"
+    dockerfiles:
+      - Dockerfile
+    critical: true
+    depends_on:
+      - base
+    build_settings:
+      timeout: 45  # 分鐘
+      buildkit_cache: true
+
+  # === 可選的子模組 (通常由 control 包含) ===
+  # 注意：以下是參考，實際由 control 的 submodules 處理
+  # fast_gicp 等由 control/src/hdl_ws 管理
+
+# ==============================================================================
+#  ROS 工作空間 CI 策略配置
+# ==============================================================================
+ci_strategy:
+  # 平行構建的最大數量
+  max_parallel_jobs: 2
+
+  # 跳過檢查的模式
+  skipPatterns:
+    - "control/src/hdl_ws"  # 由 control 的 submodule 管理
+    - ".git"
+    - ".gitignore"
+
+  # 構建超時設定 (分鐘)
+  build_timeout: 45
+
+  # 是否啟用變更檢測
+  enable_change_detection: true
+
+  # 失敗是否中斷 CI
+  fail_fast: false
+
+# ==============================================================================
+#  標籤配置
+# ==============================================================================
+labels:
+  project: "agx-ros1_ws"
+  team: "nycusystemlab"
+  workspace: "ros1"
+
+# ==============================================================================
+#  構建環境配置
+# ==============================================================================
+build_env:
+  # ROS 版本
+  ros_version: "noetic"
+
+  # 編譯器優化
+  compile_flags: "-O2"
+
+  # 是否使用緩存
+  use_cache: true
+
+  # 平台支援
+  platforms:
+    - linux/amd64
+    - linux/arm64
+
+# ==============================================================================
+#  依賴發布配置 (用於應用層)
+# ==============================================================================
+outputs:
+  # 發佈的鏡像標籤
+  images:
+    base:
+      tags:
+        - "agx-ros1_ws-base:latest"
+        - "agx-ros1_ws-base:noetic"
+
+    control:
+      tags:
+        - "agx-ros1_ws-control:latest"
+        - "agx-ros1_ws-control:slam"
+
+  # 用於應用層的鏡像引用
+  app_layer:
+    base_image: "agx-ros1_ws-base:latest"
+    control_image: "agx-ros1_ws-control:latest"

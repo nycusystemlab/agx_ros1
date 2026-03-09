@@ -1,0 +1,4 @@
+# .gitignore
+*.pcd
+!0305_b1_map.pcd
+!downsampled_0107_surface_depth_9_1_1.pcd

@@ -1,0 +1,20 @@
+services:
+  control:
+    network_mode: host
+    environment:
+      - ROS_MASTER_URI=http://127.0.0.1:11311
+      - ROS_HOSTNAME=127.0.0.1
+    volumes:
+      - /home/systemlabagx/disk/agx/ros1_ws/control/src/keyboard_control_ws/src/:/root/keyboard_control_ws/src/
+      - /home/systemlabagx/disk/Lun_RL_ws/src/RL_ppo/outdoor_RL_demo:/root/keyboard_control_ws/src/models
+      - /dev/bus/usb:/dev/bus/usb
+    devices:
+      - "/dev/video0:/dev/video0"
+      - "/dev/video1:/dev/video1"
+      - "/dev/video2:/dev/video2"
+      - "/dev/video3:/dev/video3"
+      - "/dev/video4:/dev/video4"
+      - "/dev/video5:/dev/video5"
+      - "/dev/media0:/dev/media0"
+      - "/dev/media1:/dev/media1"
+      - "/dev/media2:/dev/media2"

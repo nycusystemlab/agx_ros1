@@ -1,0 +1,14 @@
+# 預設所有文字檔都自動正規化 (存成 LF，取出時看系統)
+* text=auto
+
+# 確保腳本類在任何系統取出時，都強制維持 LF (為了 Docker/AGX)
+*.sh text eol=lf
+*.bash text eol=lf
+*.py text eol=lf
+Dockerfile text eol=lf
+*.yaml text eol=lf
+*.json text eol=lf
+*.xml text eol=lf
+Makefile text eol=lf
+
+.gitattributes text eol=lf

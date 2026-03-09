@@ -1,0 +1,32 @@
+services:
+  # =========================================
+  # ROS 1 底層控制 (control)
+  # =========================================
+  control:
+    platform: ${ARCH:-linux/amd64}
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: agx_ros/control
+    container_name: control
+    privileged: true
+    depends_on:
+      - roscore
+    environment:
+      - ROS_MASTER_URI=http://roscore:11311
+      - ROS_HOSTNAME=control
+      - AUTO_ROSCORE=false
+      - DISPLAY=${DISPLAY}
+      - XAUTHORITY=/tmp/.docker.xauth
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+      - /tmp/.docker.xauth:/tmp/.docker.xauth:rw
+      # Lun PC path
+      - /mnt/d/agx/ros1_ws/control/src/keyboard_control_ws/src:/root/keyboard_control_ws/src
+      # - /home/systemlab/agx/ros1_ws/control/src/keyboard_control_ws/src/:/root/keyboard_control_ws/src/
+    devices:
+      - "/dev/ttyUSB0:/dev/ttyUSB0"
+    tty: true
+    stdin_open: true

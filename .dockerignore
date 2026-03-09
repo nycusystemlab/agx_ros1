@@ -1,0 +1,24 @@
+# Version control
+.git/
+.gitignore
+.github/
+
+# ROS / C++ build directories
+**/build/
+**/devel/
+**/install/
+**/log/
+
+# Node.js
+**/node_modules/
+**/dist/
+
+# Python
+**/__pycache__/
+**/*.py[cod]
+
+# IDE / OS
+**/.vscode/
+**/.idea/
+**/.DS_Store
+**/*.swp

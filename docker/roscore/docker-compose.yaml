@@ -1,0 +1,13 @@
+services:
+  # =========================================
+  # ROS 1 Master (roscore)
+  # 獨立輕量容器，確保 roscore 最先啟動
+  # =========================================
+  roscore:
+    image: ros:noetic-ros-core
+    container_name: roscore
+    restart: unless-stopped
+    command: roscore
+    environment:
+      - ROS_MASTER_URI=http://roscore:11311
+      - ROS_HOSTNAME=roscore

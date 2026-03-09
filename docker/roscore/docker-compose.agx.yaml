@@ -1,0 +1,6 @@
+services:
+  roscore:
+    network_mode: host
+    environment:
+      - ROS_MASTER_URI=http://127.0.0.1:11311
+      - ROS_HOSTNAME=127.0.0.1

@@ -1,0 +1,84 @@
+# ==========================
+# 1. 作業系統垃圾 (OS Junk)
+# ==========================
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux / Mac
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+*~
+
+# ==========================
+# 2. 開發工具與 IDE (Editor)
+# ==========================
+# VS Code 
+.vscode/
+
+# JetBrains (CLion, PyCharm)
+.idea/
+
+# ==========================
+# 3. 編譯產出 (Build Artifacts)
+# ==========================
+# ROS 1 & ROS 2 標準編譯目錄
+build/
+devel/
+install/
+log/
+.catkin_workspace
+
+# C++ 編譯檔
+*.o
+*.obj
+*.so
+*.so.*
+*.a
+*.lib
+*.dll
+*.exe
+*.out
+*.app
+
+# CMake 產生的暫存檔
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+
+# ==========================
+# 4. Python 相關
+# ==========================
+__pycache__/
+*.py[cod]
+*$py.class
+*.venv
+venv/
+env/
+
+# ==========================
+# 5. 大型數據與日誌 (Safety Net)
+# ==========================
+# 預設忽略所有大型資料，避免不小心 push 上去
+# 如果特定檔案需要保留，請在該資料夾內建立 .gitignore 使用 ! 排除
+*.bag
+*.pcd
+*.ply
+*.las
+*.h5
+*.weights
+*.pt
+*.pth
+*.onnx
+*.zip
+
+# 系統日誌
+*.log
+
+# Ignore Claude AI assistant temp directories
+tmpclaude-*

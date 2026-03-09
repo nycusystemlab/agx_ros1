@@ -1,0 +1,18 @@
+services:
+  # =========================================
+  # 資料視覺化 (Foxglove) ROS 1 - rosbridge
+  # =========================================
+  foxglove_ros1:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: agx_ros/foxglove_ros1:latest
+    container_name: foxglove_ros1
+    restart: unless-stopped
+    depends_on:
+      - roscore
+    ports:
+      - "9090:9090"
+    environment:
+      - ROS_MASTER_URI=http://roscore:11311
+      - ROS_HOSTNAME=foxglove_ros1

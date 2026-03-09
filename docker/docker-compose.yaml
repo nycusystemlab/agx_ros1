@@ -1,0 +1,4 @@
+include:
+  - path: ./roscore/docker-compose.yaml
+  - path: ./control/docker-compose.yaml
+  - path: ./foxglove_ros1/docker-compose.yaml
