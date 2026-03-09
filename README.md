@@ -7,20 +7,22 @@ This is a **zero-dependency** Web dashboard designed specifically for AGX robot 
 1. **Enter the directory**:
 ```bash
 cd agx_ros1/docker
-
 ```
 
 
 2. **Start the dashboard**:
 ```bash
 python3 dashboard.py --port 8090
-
 ```
 
 
 3. **Access the webpage**:
 Open your browser and enter `http://localhost:8090` (or the robot's IP address).
 
+---
+
+4. **Visualize**:
+Open Foxglove Studio and connect to `ws:localhost:9090`(or the robot's IP address).
 ---
 
 ## 📖 Features Overview
