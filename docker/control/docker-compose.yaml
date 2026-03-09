@@ -24,8 +24,7 @@ services:
       - /tmp/.X11-unix:/tmp/.X11-unix:rw
       - /tmp/.docker.xauth:/tmp/.docker.xauth:rw
       # Lun PC path
-      - /mnt/d/agx/ros1_ws/control/src/keyboard_control_ws/src:/root/keyboard_control_ws/src
-      # - /home/systemlab/agx/ros1_ws/control/src/keyboard_control_ws/src/:/root/keyboard_control_ws/src/
+      - /home/systemlab/agx/ros1_ws/control/src/keyboard_control_ws/src/:/root/keyboard_control_ws/src/
     devices:
       - "/dev/ttyUSB0:/dev/ttyUSB0"
     tty: true
