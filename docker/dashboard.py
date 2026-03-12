@@ -36,6 +36,7 @@ TASKS = {
             "agx_imu":      {"name": "IMU 濾波",   "cmd": "rosrun imu_filter_madgwick imu_filter_node _use_mag:=false _remove_gravity_vector:=true _output_rate:=100.0 /imu/data_raw:=/camera/imu", "icon": "🧹"},
             "agx_collect" : {"name": "數據收集",   "cmd": "rosrun six_wheels_teleop inference_collect", "icon": "📥"},
             "agx_RL":       {"name": "RL推論", "cmd": "python3 /root/keyboard_control_ws/src/six_wheels_teleop/src/inference_ros1.py", "icon": "🤖"},
+            "agx_bag":      {"name": "bag紀錄", "cmd": "rosbag record /odom /velodyne_points /globalmap", "icon":"💼"}
         }
     }
 }
